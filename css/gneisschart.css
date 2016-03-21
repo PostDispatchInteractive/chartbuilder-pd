@@ -1,0 +1,133 @@
+/* 
+// Make sure to change the name of the font 
+// in the webfont.js loader in index.html
+*/
+@import url(http://fonts.googleapis.com/css?family=Cutive); 
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+@import url(http://fonts.googleapis.com/css?family=Francois+One);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {  
+/* CSS Statements that only apply on webkit-based browsers (Chrome, Safari, etc.) */  
+  #warnoff{
+  	display:none;
+  }
+
+}
+#warnoff{
+	background-color: #800000;
+	color:white;
+	padding: 10px;
+	font-size: 14px;
+	margin: 15px 10px;
+}
+.miniLogo{
+	width:40px;
+	margin-right: 7px;
+	float:left;
+
+}
+#chrome{
+	margin-top:8px;
+}
+.splainer{
+	margin:-15px 2px 10px;
+	font-size:10px;
+	padding:2px;
+}
+#preview{
+	padding:5px;
+	font-style: italic;
+}
+#intro{
+	margin-top:-10px;
+	font: 14px "Times New Roman",serif;
+
+}
+
+
+svg {
+	font-size: 14px;
+}
+
+svg #ground {
+	fill: #fff;
+	stroke: none;
+}
+
+svg #plotArea {
+	fill: none;
+	stroke: none;
+}
+
+svg .axis line {
+	fill: none;
+	shape-rendering: crispEdges;
+}
+
+svg .axis g.zero line {
+		stroke: black;
+}
+
+svg #xAxis line {
+	stroke: #444444;
+	stroke-width:2px;
+}
+
+svg #xAxis{
+	fill: #666666;
+}
+
+svg .axis path {
+	stroke: none;
+	fill: none;
+}
+
+svg .axis text {
+	font-family: "Raleway", sans-serif;
+	font-size:12px;
+	fill:#444444;
+}
+
+svg .legendItem text {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	fill:#333333;
+}
+
+svg text.metaText {
+	font-family: 'Montserrat', sans-serif;
+	font-size:  10px;
+	text-rendering:   optimizeLegibility;
+	font-weight: normal;
+	fill:#333333;
+}
+
+svg text.barLabel, 
+svg text.bargridLabel {
+	font-family: 'Montserrat', sans-serif;
+}
+
+/*Default styling of series*/
+
+svg path.seriesLine {
+	stroke-width: 3px;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	fill: none;
+}
+
+svg .seriesScatter circle {
+	stroke:#fff;
+	stroke-width":1;
+}
+	
+#titleLine {
+	font-family: 'Roboto Condensed', sans-serif;
+	fill: black;
+	font-weight:700;
+	letter-spacing: -.2px;
+
+	font-size:18pt;
+}

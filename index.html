@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Chartbuilder</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<!-- favicon updates through js -->
+		<link id="favicon" rel="shortcut icon" type="image/png" href="" />
+		
+		<!-- Libraries CSS -->
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="bower_components/really-simple-color-picker/colorPicker.css" type="text/css" media="screen" charset="utf-8">
+		
+		<!-- Chartbuilder CSS -->
+		<link rel="stylesheet" href="css/chartbuilder.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="css/gneisschart.css" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="css/colorPicker.css" type="text/css" media="screen" charset="utf-8">
+	</head>
+	<body>
+		<!-- Add your site or application content here -->
+		<div id="interactiveContent">
+			<div id="leftColumn" class="column">
+			  <div class="cbInner">
+  				<div id="staticContainer">
+  					<div id="chartContainer"></div>
+  
+  					<canvas id="canvas" width="1200px" height="676px"></canvas> 
+  					<canvas id="favicanvas" width="16px" height="16px"></canvas> 
+  				</div>
+			  </div>
+      </div>
+
+			<div id="rightColumn" class="column">
+			  <div class="cbInner">
+        <img src="pd_flag.png" style="width:500px;">
+        <div id="warnoff">
+        <img class="miniLogo" id="chrome" style="" src="chrome.png" >
+        <img class="miniLogo" src="apple.png" >
+        Currently, ChartBuilder is only fully functional in Google Chrome or Apple Safari browsers. It is recommended you create your charts from one of these browsers. Of course, after you've exported your chart image, you can upload it to your blog via whatever your browser preference.
+
+        
+        </div>
+          <hr>
+
+			    <h1>ChartBuilder </h1>
+          
+          <div id="intro">
+          <p>Don't leave good numbers in your notebook. ChartBuilder is a tool for reporters. It helps quickly turn otherwise-unused data into style-compliant, web-friendly charts that can supplement blogs or social media posts. Not every chart can or should be built with ChartBuilder, but in a majority of cases, simple bar, line or scatter plot charts can be created by reporters on deadline as easily as Copy/Paste. Follow these steps:
+          </p>
+          </div>
+          <hr>
+			  
+  				<div id="chartOptions" class="interfaceCol">
+             <div id="datainput">
+             	<div class="inputGroup">
+                <h2>1. Paste your data from Excel</h2>
+                <div class="splainer">Your paste should include JUST ONE row for column names and the rows of the data you want to chart. If your data has a date column, make sure it's named "Date". Reformat currency and percent data as a raw number, without the currency or percent symbol, for example, 2.23, not $2.23.</div>
+                <span id="invalidDataSpan" class="hide">Warning: Data is Invalid</span>
+                <textarea id="csvInput" class="input-box" name="csvInput" rows="8"></textarea>
+             	</div>
+             	<div class="inputGroup" id="preview">
+               <h2>Data Check</h2>
+             		<div class="splainer">If ChartBuilder was able to parse your data, it will be formatted correctly below:</div>
+                <div id="dataTable" class="input-box">
+                  <table border=0>
+                    <tr><th>Header</th></tr>
+                    <tr><td>Data</td></tr>
+                  </table>
+              	</div>
+             	</div>
+             	<div class="clearfix"></div>
+            </div>
+
+            <div class="optionBlock topOptionBlock">
+              <h2>2. Series Options</h2>
+              <div class="splainer">
+              Choose a color and geometry type for each series class. The small checkboxes at right create an independent axis for the series class. Generally, leave these unchecked, unless you're comparing trends across different scales, for example, unemployment rate v. stimulus spending. 
+              </div>
+              <div id="seriesItems"></div>
+            </div>
+  					
+  					<div class="optionBlock">
+    					<h2>3. Chart Options</h2>
+    						<div class="optionGroup"><label for="chart_title">Title</label><input type="text" name="chart_title" value="Title This Chart" id="chart_title"></div>
+    						<div class="optionGroup"><label for="credit">Attribute</label><input id="creditLine" type="text" name="credit" value="stltoday.com"></div>
+    						<div class="optionGroup"><label for="source">Source</label><input id="sourceLine" type="text" name="source" value="SOURCE: Saint Louis Post Dispatch Analysis">
+    						<cite>Something like "SOURCE: Bureau of Labor Statistics"</cite></div>
+    				</div>
+    				<div class="optionBlock">
+   							<h2>4. Right Axis Options</h2>
+    						<div id="rightAxisControls">
+    							<div class="optionGroup"><label for="right_axis_prefix">Right Axis Prefix</label><input type="text" name="right_axis_prefix" value="" id="right_axis_prefix"></div>
+	    						<div class="optionGroup"><label for="right_axis_suffix">Right Axis Suffix</label><input type="text" name="right_axis_suffix" value="" id="right_axis_suffix"></div>
+	    						<div class="optionGroup"><label for="right_axis_tick_num">Number of Y Axis Ticks</label><select name="right_axis_tick_num" id="right_axis_tick_num" size="1">
+	    							<option>2</option>
+	    							<option>3</option>
+	    							<option selected >4</option>
+	    							<option>5</option>
+	    							<option>6</option>
+	    						</select></div>
+    							<div class="optionGroup"><label for="right_axis_max">Right Axis Max</label><input type="text" name="right_axis_max" value="" id="right_axis_max"></div>
+    							<div class="optionGroup"><label for="right_axis_min">Right Axis Min </label>(Often should be 0)<input type="text" name="right_axis_min" value="" id="right_axis_min"></div>
+    							<div class="optionGroup advanced"><label for="right_axis_tick_override">Right Axis Tick Override</label><input type="text" name="right_axis_tick_override" value="" id="right_axis_tick_override"></div>
+    						</div>
+    					</div>
+    					<div id="leftAxisControls" class="optionBlock hide">
+  							<h2>4+ Left Axis Options</h2>
+  							<div class="optionGroup"><label for="left_axis_prefix">Left Axis Prefix</label><input type="text" name="left_axis_prefix" value="" id="left_axis_prefix"></div>
+  							<div class="optionGroup"><label for="left_axis_suffix">Left Axis Suffix</label><input type="text" name="left_axis_suffix" value="" id="left_axis_suffix"></div>
+  							<div class="optionGroup"><label for="left_axis_max">Left Axis Max</label><input type="text" name="left_axis_max" value="" id="left_axis_max"></div>
+  							<div class="optionGroup"><label for="left_axis_min">Left Axis Min</label><input type="text" name="left_axis_min" value="" id="left_axis_min"></div>
+  							<div class="optionGroup"><label for="left_axis_tick_override">Left Axis Tick Override</label><input type="text" name="left_axis_tick_override" value="" id="left_axis_tick_override" ></div>
+    					</div>
+    					<div class="optionBlock">
+    					<h2>5. Bottom Axis Options</h2>
+						<div class="optionGroup showonlywith-date">
+              <div class="splainer">
+              These options help format dates along the X axis.
+              </div>
+							<label for="x_axis_tick_date_frequency">Tick Date Frequency</label><select name="x_axis_tick_date_frequency" id="x_axis_tick_date_frequency" size="1">
+								<option selected>auto</option>
+								<option>1 hour</option>
+								<option>1 day</option>
+								<option>1 week</option>
+								<option>1 month</option>
+								<option>3 months</option>
+								<option>6 months</option>
+								<option>1 year</option>
+								<option>5 years</option>
+								<option>10 years</option>
+								<option>20 years</option>
+								<option>50 years</option>
+								<option>100 years</option>
+							   </select>
+						</div>
+    						<div class="optionGroup showonlywith-date"><label for="x_axis_date_format">X Axis Date Format</label><select name="x_axis_date_format" id="x_axis_date_format">
+    							<option value="mmddyyyy">2/25/2012</option>
+    							<option value="ddmmyyyy">25/2/2012</option>
+    							<option value="mmdd">2/25</option>
+    							<option value="Mdd">Feb. 25</option>
+                  <option value="ddM">25 Feb.</option>
+    							<option value="mmyy">2/13</option>
+    							<option value="yy">'13</option>
+    							<option value="yyyy">2013</option>
+    							<option value="MM">February</option>
+    							<option selected value="M">Feb.</option>
+    							<option value="hmm">3:27</option>
+    						</select>
+							</div>
+              <div class="optionGroup showonlywith-ordinal">No options available</div>
+            </div>
+            <div class="optionBlock full">
+              <h2>Export the Chart</h2>
+              Ready to export? Does your chart tell the truth, the whole truth and nothing but the truth? If you're sure yours won't end up <a href="http://wtfviz.net/" style="text-decoration:none;" target="_blank">here</a>, <a href="http://simplystatistics.org/2012/11/26/the-statisticians-at-fox-news-use-classic-and-novel-graphical-techniques-to-lead-with-data/" style="text-decoration:none;" target="_blank">here</a> or <a href="https://visualisingadvocacy.org/blog/disinformation-visualization-how-lie-datavis" style="text-decoration:none;" target="_blank">here</a>, click below.
+              <div class="updateButton" id="createImageButton" onClick="_gaq.push(['_trackEvent', 'Charts', 'Export', 'Export',, false]);">
+                <p>Create Image of Chart</p>
+              </div>
+              <div id="downloadLinksDiv" class="downloadLinks hide">
+                <a download="new_chart.png" id="downloadImageLink" class="downloadLink" href="#" target="_blank" onClick="_gaq.push(['_trackEvent', 'Charts', 'Export', 'Export PNG',, false]);">Download&nbsp;Image&nbsp;of&nbsp;Chart</a> or 
+                <a download="new_chart.svg" id="downloadSVGLink" class="downloadLink" href="#" target="_blank" onClick="_gaq.push(['_trackEvent', 'Charts', 'Export', 'Export SVG',, false]);">Download&nbsp;SVG&nbsp;of&nbsp;Chart</a>
+              </div>
+
+
+            </div>
+
+          <!--   <div class="optionBlock full">
+              <h4>A copy of the HTML table of your data (if needed)</h4>
+              <textarea  class="input-box"  id="table-html" type="text" rows="10"></textarea>
+              
+              <div class="previousCharts hide">
+                <div class="optionGroup"><label for="previous_charts">Previously Created Charts</label>
+                  <select name="previous_charts" id="previous_charts"></select>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="clearfix"></div>
+  				</div>
+  				
+          <div id="currentSeries" class="interfaceCol"></div>
+  			</div>			
+			</div>
+
+      <div id="blankColumn" class="column">
+        
+
+      </div>
+      <hr style="border-top: 2px dotted; margin:0px 5px;">
+      <div style="margin:10px">
+      <div style="background-color:#111111; padding:10px;">
+      <img src="caution.png" style="width:50px; height:35px; border: white solid 1px; float:left; margin-right:5px;"><span style="font:14.5px sans-serif; color:white;">This tool is under development and may have bugs. If you find one and want to help fix it, take a screenshot and send an email to <a style="color:white;" href="mailto:carl@carlvlewis.net?Subject=ChartBuilder%20Bug%20Report" target="_top">carl@carlvlewis.net</a>.</span>
+      </div>
+      <br><br><br><br>
+      <span style="font:italic 13px serif; color:black;">ChartBuilder was designed and built by staff at <a href="https://github.com/Quartz" target="_blank">Quartz</a> and has been made available as an open-source product under the <a href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. Other changes were made by the Post-Dispatch Data and Interactive Team.</span>
+      </div>
+      <div class="clearfix"></div>
+
+		</div>
+
+    <!-- Libraries JS -->
+		<script src="bower_components/modernizr/modernizr.js" charset="utf-8"></script>
+		<script src="bower_components/jquery/jquery.min.js" charset="utf-8"></script>
+		<script src="bower_components/d3/d3.v2.min.js" charset="utf-8"></script>
+		<script src="bower_components/canvg/canvg.js" charset="utf-8"></script>
+		<script src="bower_components/rgbcolor/index.js" charset="utf-8"></script>
+		<script src="bower_components/jquery-csv/index.js" charset="utf-8"></script>
+		<script src="bower_components/really-simple-color-picker/jquery.colorPicker.min.js" charset="utf-8"></script>
+		<script src="bower_components/webfontloader/target/webfont.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		
+		<!-- Custom libraries JS -->
+		<script src="js/custom_components/sugar-1.3.9-custom.min.js" charset="utf-8"></script>
+		
+		<!-- Chartbuilder JS -->
+		<script src="js/gneisschart.js" charset="utf-8"></script>
+		<script src="js/chartbuilder.js"></script>
+
+		<script src="js/vendor/canvg.v1.3.js"></script>
+		<script src="js/vendor/rgbcolor.js" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+
+
+
+		//This loads the webfonts and starts Chartbuilder once they're present
+/*		WebFont.load({
+			custom: {
+				families: ["Cutive","Montserrat","Raleway","Francois One"]
+			},
+		    active: function(name) {
+		        $(document).ready(function() {
+		            ChartBuilder.start();
+		        });
+		    }
+		});*/
+
+
+		</script>
+  <script>
+  setTimeout(ChartBuilder.start(), 700);
+  
+  /*DMN styling*/
+  setTimeout(delayed, 1000);
+
+  function delayed(){
+    
+  var sourceText = document.getElementById("sourceText")
+      attributeText = document.getElementById("attributeText");
+      
+      sourceText.innerHTML = sourceText.innerHTML.replace(/Dallas Morning News/g, '<tspan style="font-style: italic; font-size:11px;">St. Louis Post-Dispatch</tspan>');
+
+      attributeText.innerHTML = attributeText.innerHTML.replace(/dallasnews.com/g, 'STL<tspan style="font-family:serif; font-size:12px;">today</tspan>.com');
+
+  }
+   
+  </script>
+
+   
+ <!--  Google tracking -->
+ 
+
+<script type="text/javascript">
+var downloadLink = document.getElementById('downloadImageLink');
+addListener(downloadLink, 'click', function() {
+  ga('send', 'event', 'export', 'click', 'export image');
+});
+
+
+/**
+ * Utility to wrap the different behaviors between W3C-compliant browsers
+ * and IE when adding event handlers.
+ *
+ * @param {Object} element Object on which to attach the event listener.
+ * @param {string} type A string representing the event type to listen for
+ *     (e.g. load, click, etc.).
+ * @param {function()} callback The function that receives the notification.
+ */
+function addListener(element, type, callback) {
+ if (element.addEventListener) element.addEventListener(type, callback);
+ else if (element.attachEvent) element.attachEvent('on' + type, callback);
+}</script>
+<script type="text/javascript">
+var downloadLink = document.getElementById('downloadSVGLink');
+addListener(downloadLink, 'click', function() {
+  ga('send', 'event', 'export', 'click', 'export svg');
+});
+
+
+/**
+ * Utility to wrap the different behaviors between W3C-compliant browsers
+ * and IE when adding event handlers.
+ *
+ * @param {Object} element Object on which to attach the event listener.
+ * @param {string} type A string representing the event type to listen for
+ *     (e.g. load, click, etc.).
+ * @param {function()} callback The function that receives the notification.
+ */
+function addListener(element, type, callback) {
+ if (element.addEventListener) element.addEventListener(type, callback);
+ else if (element.attachEvent) element.attachEvent('on' + type, callback);
+}</script>
+
+
+	</body>
+</html>
